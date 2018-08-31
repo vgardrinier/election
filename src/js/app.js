@@ -8,11 +8,10 @@ App = {
     return App.initWeb3();
   },
 
-  //init our app to our local blockchain network
   initWeb3: function() {
     // TODO: refactor conditional
     if (typeof web3 !== 'undefined') {
-      // If a web3 instance is already provided by Meta Mask which provodes us with a web3 provider which transform our browser into a blockchain browser
+      // If a web3 instance is already provided by Meta Mask.
       App.web3Provider = web3.currentProvider;
       web3 = new Web3(web3.currentProvider);
     } else {
@@ -23,7 +22,6 @@ App = {
     return App.initContract();
   },
 
-  // load our contract to our front end so we can interact with it
   initContract: function() {
     $.getJSON("Election.json", function(election) {
       // Instantiate a new truffle contract from the artifact
@@ -37,7 +35,7 @@ App = {
     });
   },
 
-  Listen for events emitted from the contract
+  // Listen for events emitted from the contract
   listenForEvents: function() {
     App.contracts.Election.deployed().then(function(instance) {
       // Restart Chrome if you are unable to receive this event
